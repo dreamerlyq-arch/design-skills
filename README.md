@@ -9,14 +9,16 @@ skills/
   degov-design-system/
     SKILL.md
     agents/openai.yaml
+    assets/baselines/
     references/
+    scripts/check-drift.mjs
 ```
 
 Add future projects as independent folders under `skills/`. Keep shared collection documentation at the repository root and project-specific rules inside the relevant skill.
 
 ## Available skills
 
-- `degov-design-system`: DeGov Homepage, Atlas, and Square design contract and implementation routing.
+- `degov-design-system`: DeGov Homepage, Atlas, and Square source maps, exact product contracts, state matrix, fixed-viewport baselines, and drift checks.
 
 ## Install
 

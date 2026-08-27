@@ -1,6 +1,6 @@
 # DeGov cross-product design contract
 
-Use this reference for token mapping, component decisions, and product-theme exceptions. Current user instructions and closer project rules remain authoritative for business behavior and scope.
+Use this reference for shared semantic intent. It is deliberately less specific than the three product references. Current user instructions, the current target route, imported local components, and closer project rules remain authoritative.
 
 ## Architecture
 
@@ -17,7 +17,7 @@ Products consume the contract through their existing local CSS and components. T
 | Area | Contract |
 | --- | --- |
 | Font | `Instrument Sans` for interface and display; monospace only for code, keys, data, or compact metadata |
-| Type sizes | 12, 14, 16, 20, 24, 30, 40, 64px as the common reference scale |
+| Type sizes | 12, 14, 16, 20, 24, 30, 40, 64px as a cross-product reference; do not replace a product's documented local scale |
 | Spacing | 4, 8, 12, 16, 20, 24, 32, 40, 48px |
 | Control height | 40px default, 34px compact |
 | Panel padding | 24px desktop, 16px compact/mobile |
@@ -53,6 +53,7 @@ Status colors carry status meaning. Product accents do not replace semantic succ
 - Radius: sharp by default; 0px small/medium and 4px large are the current reference.
 - May use editorial spacing, campaign-scale type, and marketing expression.
 - Does not set Atlas or Square application density.
+- The current marketing `Card` implementation is a documented 20px-radius exception to the otherwise sharp token scale. Do not "fix" it from the shared radius rule.
 
 ### Atlas
 
@@ -125,3 +126,7 @@ Status colors carry status meaning. Product accents do not replace semantic succ
 ## Adoption gate
 
 Before broad token adoption, map one existing real page in each product. Verify visual consistency at desktop and 390px and confirm that route, data, API, authentication, analytics, and interaction behavior remains unchanged. Expand only after that pilot is accepted.
+
+## What this contract cannot decide
+
+This file does not select the concrete component, state machine, exact route layout, or copy for a feature. Those decisions come from the target product reference and current source. If the required product state is not documented, inspect an accepted adjacent implementation and record the new evidence rather than inventing a cross-product default.
