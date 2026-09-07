@@ -1,15 +1,15 @@
 ---
 name: degov-design-system
-description: Apply and maintain the DeGov cross-product design contract when adding, refining, or reviewing UI in DeGov Homepage, Atlas, or Square. Use for new pages, features, components, token mapping, theme alignment, and visual QA; do not use for backend-only or API-only work.
+description: Apply DeGov product design rules and source mappings when implementing or reviewing Homepage, Atlas, or Square UI, shared tokens, components, themes, and visual QA. Excludes backend-only and API-only work.
 ---
 
 # DeGov Design System
 
-Use this skill as a source map and verification gate, not as permission to redesign a product. Homepage, Atlas, and Square share semantic intent but keep product-local components, routes, data, authentication, analytics, and interaction behavior.
+Keep the three products coherent through semantic roles and product-local components. This skill provides source mappings and design constraints; it does not authorize a redesign or a change to product behavior.
 
 ## Resolve the target
 
-Before editing, state the product, route, repository, current commit, viewport, and closest existing pattern. On Dre's machine the repositories are under `/Users/uncledre/Documents/Devlompment/`.
+Identify the requested product and route, actual checkout, branch/diff, and the component imported by that route. The repositories below are lookup defaults under `/Users/uncledre/Documents/Devlompment/`; use the user's actual worktree when different. A product name or historical port alone does not establish the target.
 
 | Product | Repository | Required product reference |
 | --- | --- | --- |
@@ -17,51 +17,39 @@ Before editing, state the product, route, repository, current commit, viewport, 
 | Atlas | `degov-agent-api` | [references/atlas.md](references/atlas.md) |
 | Square | `degov-square` | [references/square.md](references/square.md) |
 
-Always read [references/design-contract.md](references/design-contract.md). Then read only the target product reference. For new pages, forms, asynchronous UI, responsive work, dialogs, drawers, or list/table work, also read [references/state-matrix.md](references/state-matrix.md). For visual comparison or release QA, read [references/baselines.md](references/baselines.md).
+Read the target product reference, then load additional guidance only as needed:
+
+| Task | Guidance and verification scope |
+| --- | --- |
+| Local spacing, type, copy, or style fix | Inspect the caller and local tokens; verify the affected presentation and states. No default three-product audit or baseline refresh. |
+| New UI, shared component, token, theme, or responsive change | Read [design-contract.md](references/design-contract.md) and relevant rows in [state-matrix.md](references/state-matrix.md). Check affected consumers and rendered variants in the target product. |
+| Visual comparison or whole-product QA | Read [baselines.md](references/baselines.md). Inventory requested routes, themes, states, and viewports; reconcile coverage before claiming completion. |
+| Skill/source refresh or suspected drift | Read [maintenance.md](references/maintenance.md). Check only the affected product unless the task spans products. |
 
 ## Authority order
 
-Use the first available authority in this order:
+Current user instructions and closer repository rules control scope. Within that scope:
 
-1. Current user instruction and closer repository rules.
-2. The current target route and its imported product-local component.
-3. The target product token entry and reusable component listed in its reference.
-4. The target product reference in this skill.
-5. The shared design contract.
-6. The stored screenshot baseline, which is comparison evidence rather than source code.
+- Confirmed product tokens and shared components own reusable visual rules. Inspect the actual import and CSS cascade before choosing an owner.
+- The current route establishes behavior, content, and applicability. Existing code or an uncommitted diff is evidence, not proof of an accepted design. Preserve inherited work; do not silently promote a one-off override or erase a documented exception.
+- Product references are dated source snapshots. The shared contract supplies semantic defaults where the product has no established pattern. Screenshots supply visual comparison evidence, not component or behavior authority.
 
-If a product file contradicts a shared rule, preserve the product implementation and document the exception. Do not silently normalize it. If the drift checker reports a missing invariant or the current route differs materially from its baseline, inspect the new source before editing and treat the reference as stale until reconciled.
-
-## Preflight
-
-Run the drift check from the skill authoring or installed directory:
-
-```sh
-node scripts/check-drift.mjs
-```
-
-Use `--strict-head` only for a deliberate reference refresh. A changed commit is a warning because normal product work advances HEAD; a missing source file, missing invariant, or changed baseline asset is an error.
-
-Then inspect the target route, token entry, nearest existing component, its callers, and all states in scope. Never choose a component only because another DeGov product has a similarly named one.
+When these disagree, inspect source and acceptance context. Clarify only a conflict that materially changes the requested scope or design; do not rewrite source merely to match an old snapshot.
 
 ## Implement
 
-1. Reuse the product-local component or pattern named in the relevant product reference.
-2. Map visual values through the product token entry. Do not introduce a second base scale or copy another product's CSS/React implementation.
-3. Preserve product character: Homepage is editorial marketing; Atlas is neutral and data-dense; Square is neutral with restrained warm-gold emphasis.
-4. Preserve source behavior: route results, data/API semantics, authentication, wallet state, analytics, external destinations, keyboard behavior, and accessible names.
-5. Add a product-local exception only when the existing contract cannot express the real need. Promote it to the shared contract only after repeated accepted use.
-
-For Card and Panel work, use neutral surfaces and semantic hierarchy. Atlas and Square do not use colored structural borders. Square reserves `#e5b47a` for product emphasis, action, focus, and selection.
+- Reuse the target product's imported component and token owner. Fix a shared defect in that owner and check its affected consumers; similar names across repositories do not make implementations interchangeable.
+- Preserve product character: Homepage is editorial marketing; Atlas is neutral and data-dense; Square uses neutral surfaces with restrained warm-gold emphasis. Atlas and Square structural borders stay neutral; semantic status colors retain their meaning.
+- Preserve content, destinations, route results, data/API semantics, authentication, wallet state, analytics, keyboard behavior, and accessible names unless the user explicitly authorizes that behavior change.
+- Keep new exceptions local until accepted. Promote them to shared rules only when repeated accepted use supports it.
 
 ## Validate
 
-- Compare a major change at 1440×1000 and 390×844 against the relevant stored baseline and the current live route.
-- Exercise every applicable row in the state matrix; do not infer loading, empty, error, invalid, disabled, selected, focus, dialog, or drawer behavior from the default state.
-- Check panel padding, heading wrapping, local table/list overflow, fixed or sticky elements, and document-level horizontal overflow.
-- Run the target repository's existing design/build/type checks in addition to `scripts/check-drift.mjs`.
-- Report the product, route, source commit, viewport, theme, state coverage, checks run, and anything not verified.
+- Choose checks from the changed owner and affected behavior, while honoring required repository checks. A local visual fix does not automatically require a full build or all-product drift scan.
+- For layout or visual acceptance, inspect the actual target route at the agreed viewport; for responsive changes include the affected narrow layout. Use baseline dimensions only when comparing that baseline. Read [baselines.md](references/baselines.md) for defaults and special surfaces such as `/deck`.
+- Exercise applicable states, actual client navigation for route/motion changes, and affected light/dark variants. Check natural heading wraps, local table overflow, sticky elements, and document overflow where relevant.
+- Distinguish source checks, runtime checks, visual/behavior review, and user acceptance. Report actual coverage and material gaps; a passing drift script, build, HTTP response, or screenshot alone does not prove usability.
 
 ## Maintain the skill
 
-The authoring checkout is `/Users/uncledre/Documents/Devlompment/design-skills/skills/degov-design-system/`; `~/.codex/skills/degov-design-system/` is the installed copy. When accepted product work changes a canonical token, component, state, or page baseline, update the relevant product reference, `references/source-manifest.json`, and baseline assets in the same skill change. Update the local visual document at `/Users/uncledre/Documents/Devlompment/degov-design-system/index.html` only when shared human-facing rules change.
+Use [maintenance.md](references/maintenance.md) for the exact authoring/installation paths, scoped drift commands, and reference or baseline updates. Keep implementation observations separate from accepted design decisions; refresh only the evidence that actually changed.

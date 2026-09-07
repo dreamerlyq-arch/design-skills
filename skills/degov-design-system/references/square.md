@@ -1,6 +1,8 @@
 # Square implementation reference
 
-Observed from repository `degov-square` at commit `f124b5390fcb0e93ade2d01a94dc8ca0f8820b5b` on 2026-08-27. Re-run the drift check and inspect current source before applying this snapshot to a later commit.
+Source snapshot: repository `degov-square`, commit `f124b5390fcb0e93ade2d01a94dc8ca0f8820b5b`, observed 2026-08-27. Inspect current imports and diff before reuse; for suspected drift run `node scripts/check-drift.mjs --product square` from the skill directory.
+
+This reference maps the Square directory/settings application under `web/`. For a DAO governance site or proposal/draft route, first verify its actual repository and route owner; the name “DeGov” or a link to Square does not establish that these primitives are imported there.
 
 ## Canonical source map
 
@@ -43,7 +45,7 @@ Observed from repository `degov-square` at commit `f124b5390fcb0e93ade2d01a94dc8
 - Inputs use a raised neutral surface, 8px radius, semantic line, 3px gold focus ring, disabled state, and `aria-invalid` danger treatment.
 - Select is the Radix implementation in `select.tsx`; preserve keyboard navigation, trigger size, portal placement, selected indicator, disabled items, and scroll buttons.
 - Form primitives wire labels, descriptions, messages, `aria-describedby`, and `aria-invalid`. Do not hand-build error markup that breaks this linkage.
-- Use the existing input group/addon/select variants when the field is structurally grouped; keep one shared outline rather than adjacent competing borders.
+- Reuse the existing input group/addon/select variant and inspect its caller. `InputAddon` and `InputSelect` contain spaced subcontrols; do not merge them into one outline by default. Use a shared outline only for a caller that already establishes a fused input group, and preserve its responsive split/focus treatment.
 
 ### Dialog, menu, tooltip
 

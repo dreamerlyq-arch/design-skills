@@ -1,6 +1,6 @@
 # Atlas implementation reference
 
-Observed from repository `degov-agent-api` at commit `90b14f26d3e94ac8350bf2da93505568af1a8b33` on 2026-08-27. The local visual route requires `ATLAS_API_BASE_URL` and backend credentials; the stored visual baseline therefore uses the canonical production `/daos` route while source mappings come from this local commit.
+Source snapshot: repository `degov-agent-api`, commit `90b14f26d3e94ac8350bf2da93505568af1a8b33`, observed 2026-08-27. Inspect current imports and diff before reuse; for suspected drift run `node scripts/check-drift.mjs --product atlas` from the skill directory. The stored `/daos` images came from production; its deployed commit was not recorded, so these images are not proof of this local commit's rendering.
 
 ## Canonical source map
 
@@ -8,6 +8,7 @@ Observed from repository `degov-agent-api` at commit `90b14f26d3e94ac8350bf2da93
 | --- | --- |
 | Product tokens | `apps/atlas/app/atlas-tokens.css` |
 | Shared application styles | `apps/atlas/app/globals.css` |
+| Backend/data semantics and local runtime guidance | `docs/atlas.md`, `apps/atlas/lib/backend-api.ts` |
 | Overview-specific composition | `apps/atlas/app/page.tsx`, `overview.css` |
 | DAO directory | `apps/atlas/app/daos/page.tsx` and adjacent directory components |
 | Governance feed | `apps/atlas/app/governance/page.tsx`, `governance/governance-feed.css` |
@@ -74,3 +75,9 @@ Use `assets/baselines/atlas-desktop-1440x1000.png` and `atlas-mobile-390x844.png
 - Do not replace data-dense rows with isolated marketing cards.
 - Do not bypass canonical search, select, tooltip, StatePill, loading, empty, error, or event-panel implementations.
 - Do not call a local Atlas screenshot verified if the route is showing the missing-API error boundary.
+
+## Runtime and navigation evidence
+
+- Check `docs/atlas.md` and the current backend adapter when data cannot render. The inspected source requires `ATLAS_API_BASE_URL` and server-side authentication; an old `ATLAS_USE_MOCK_DATA` recipe or leftover local fixture does not prove the current runtime supports mocks. Do not add mock wiring or change auth to obtain a screenshot.
+- If an explicitly authorized fixture path exists in the actual checkout, identify it as fixture-based visual evidence. It cannot verify live backend integration.
+- For route/motion changes inspect `apps/atlas/app/atlas-route-motion.tsx` and its actual callers. Verify content visibility after client navigation and re-entry as well as hard refresh; a layout-level animation may run before streamed route content mounts.

@@ -1,10 +1,10 @@
 {
-  "version": 1,
-  "observedAt": "2026-08-27",
+  "version": 2,
   "workspaceRoot": "/Users/uncledre/Documents/Devlompment",
   "products": {
     "homepage": {
       "repository": "Degov",
+      "observedAt": "2026-08-27",
       "observedCommit": "146f940cccd59de5ebf6c5bd80bfbc190bc1687c",
       "reference": "references/homepage.md",
       "routes": ["/", "/pricing", "/deck"],
@@ -40,6 +40,7 @@
     },
     "atlas": {
       "repository": "degov-agent-api",
+      "observedAt": "2026-08-27",
       "observedCommit": "90b14f26d3e94ac8350bf2da93505568af1a8b33",
       "reference": "references/atlas.md",
       "routes": ["/", "/daos", "/governance", "/daos/[daoId]", "/proposals/[proposalId]", "/participants/[participantId]"],
@@ -79,6 +80,7 @@
     },
     "square": {
       "repository": "degov-square",
+      "observedAt": "2026-08-27",
       "observedCommit": "f124b5390fcb0e93ade2d01a94dc8ca0f8820b5b",
       "reference": "references/square.md",
       "routes": ["/", "/setting/[id]", "/notification", "/add/existing", "/oauth/authorize"],
@@ -120,36 +122,84 @@
   "baselines": [
     {
       "file": "assets/baselines/homepage-desktop-1440x1000.png",
+      "product": "homepage",
+      "capturedAt": "2026-08-27",
+      "url": "http://127.0.0.1:3001/",
+      "sourceKind": "local",
+      "sourceCommit": "146f940cccd59de5ebf6c5bd80bfbc190bc1687c",
+      "workingTreeStatus": "not-recorded",
+      "theme": null,
+      "accountDataState": null,
       "width": 1440,
       "height": 1000,
       "sha256": "3836cb83e54c1162e9c8e30527faac005b6ca0e8e68fe85732d1785f1ca5c874"
     },
     {
       "file": "assets/baselines/homepage-mobile-390x844.png",
+      "product": "homepage",
+      "capturedAt": "2026-08-27",
+      "url": "http://127.0.0.1:3001/",
+      "sourceKind": "local",
+      "sourceCommit": "146f940cccd59de5ebf6c5bd80bfbc190bc1687c",
+      "workingTreeStatus": "not-recorded",
+      "theme": null,
+      "accountDataState": null,
       "width": 390,
       "height": 844,
       "sha256": "802978c2ed29288909f670cd426b16a011051c3945156c16b032d789a5885f18"
     },
     {
       "file": "assets/baselines/atlas-desktop-1440x1000.png",
+      "product": "atlas",
+      "capturedAt": "2026-08-27",
+      "url": "https://atlas.degov.ai/daos",
+      "sourceKind": "production",
+      "sourceCommit": null,
+      "workingTreeStatus": "not-applicable",
+      "theme": null,
+      "accountDataState": null,
       "width": 1440,
       "height": 1000,
       "sha256": "dc53d02a3f7e235af69fbefb190c885a69c5e896d4be92905cbddf29e81300ae"
     },
     {
       "file": "assets/baselines/atlas-mobile-390x844.png",
+      "product": "atlas",
+      "capturedAt": "2026-08-27",
+      "url": "https://atlas.degov.ai/daos",
+      "sourceKind": "production",
+      "sourceCommit": null,
+      "workingTreeStatus": "not-applicable",
+      "theme": null,
+      "accountDataState": null,
       "width": 390,
       "height": 844,
       "sha256": "fca23dd5e1a829033cfbed7ae5a0d0c1b42dc75f71cf74f3750f657b66cc5853"
     },
     {
       "file": "assets/baselines/square-desktop-1440x1000.png",
+      "product": "square",
+      "capturedAt": "2026-08-27",
+      "url": "http://127.0.0.1:3002/",
+      "sourceKind": "local",
+      "sourceCommit": "f124b5390fcb0e93ade2d01a94dc8ca0f8820b5b",
+      "workingTreeStatus": "not-recorded",
+      "theme": null,
+      "accountDataState": null,
       "width": 1440,
       "height": 1000,
       "sha256": "da472972c0032d434e076b7bd127ef456d652936eb1cc826782a33f456c5752b"
     },
     {
       "file": "assets/baselines/square-mobile-390x844.png",
+      "product": "square",
+      "capturedAt": "2026-08-27",
+      "url": "http://127.0.0.1:3002/",
+      "sourceKind": "local",
+      "sourceCommit": "f124b5390fcb0e93ade2d01a94dc8ca0f8820b5b",
+      "workingTreeStatus": "not-recorded",
+      "theme": null,
+      "accountDataState": null,
       "width": 390,
       "height": 844,
       "sha256": "1120b2a72e100b0380dc884edc4b97b8c3ff9d875af138f16a96e14cc11ad68a"

@@ -1,4 +1,4 @@
 interface:
   display_name: "DeGov Design System"
-  short_description: "Apply DeGov product design rules consistently"
-  default_prompt: "Use $degov-design-system to add or refine this DeGov product UI without changing product behavior."
+  short_description: "Apply DeGov design rules with scoped source and visual checks"
+  default_prompt: "Use $degov-design-system to implement or review this DeGov UI using its product-local patterns and checks matched to the requested scope."

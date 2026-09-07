@@ -1,22 +1,26 @@
 # Homepage implementation reference
 
-Observed from repository `Degov` at commit `146f940cccd59de5ebf6c5bd80bfbc190bc1687c` on 2026-08-27. Re-run the drift check and inspect current source before applying this snapshot to a later commit.
+Source snapshot: repository `Degov`, commit `146f940cccd59de5ebf6c5bd80bfbc190bc1687c`, observed 2026-08-27. Inspect the target caller and working-tree diff before reuse; matching HEAD does not establish that the current route matches this snapshot. For suspected drift use `node scripts/check-drift.mjs --product homepage` from the skill directory.
 
 ## Canonical source map
 
 | Purpose | Source |
 | --- | --- |
-| Active marketing tokens and primitives | `src/app/site.css` |
-| Global Tailwind/application styles | `src/app/globals.css` |
+| Shared marketing tokens and primitives | `src/app/site.css` |
+| Global CSS imports and cascade order | `src/app/globals.css` |
+| Homepage route styling and overrides | `src/app/home.css` |
 | Current homepage composition and state | `src/app/home-client.tsx` |
+| Pricing composition, local tokens, and CTA overrides | `src/app/pricing/pricing-client.tsx`, `src/app/pricing.css` |
 | Homepage and pricing shell | `src/components/layout/site-header.tsx`, `src/components/layout/site-footer.tsx` |
 | Active marketing CTA content | `src/components/layout/motion-button-content.tsx` plus `.btn` and `.motion-btn` in `site.css` |
 | Generic UI exports | `src/components/ui/button.tsx`, `card.tsx`, `badge.tsx`, `accordion.tsx`, `Empty.tsx`, `LazyImage.tsx` |
 | Section helpers | `src/components/ui/section-wrapper.tsx`, `section-label.tsx` |
 
-Do not assume `src/components/ui/button.tsx` is the homepage hero button. The current homepage and pricing routes primarily use the CSS `.btn`, `.btn-primary`, `.btn-ghost`, and `.motion-btn` contract through the layout and page clients. Inspect the caller before choosing either implementation.
+Do not assume `src/components/ui/button.tsx` is the homepage hero button. The homepage and pricing routes use CSS `.btn`, `.btn-primary`, `.btn-ghost`, and `.motion-btn` through the layout and page clients. Inspect the caller and later route CSS before choosing an owner: `globals.css` imports `site.css`, then `home.css`, then `pricing.css`; `.pricing-site .btn` overrides the shared button. A pricing-only adjustment belongs to that route's applicable selector, not the shared base by default.
 
-## Exact token snapshot
+## Shared token snapshot
+
+These are `site.css` defaults. Route-level tokens and selectors in `home.css` or `pricing.css` may override them; this list is not the computed style of every marketing page.
 
 - Canvas `#1f2228`; surface layers `rgba(255,255,255,0.03)` and `0.05`.
 - Primary text and accent are white; secondary text is white at `0.7`; muted/meta text is white at `0.5`.
@@ -31,11 +35,12 @@ Do not assume `src/components/ui/button.tsx` is the homepage hero button. The cu
 
 ## Component contracts
 
-### Marketing button
+### Base marketing button
 
 - `.btn` is 52px high, uppercase, letter-spaced, square-cornered, and horizontally padded by 24px.
 - Primary is a white fill with dark text. Ghost uses a neutral border. External links add `↗`.
 - `.motion-btn` adds the sliding fill and icon treatment. Preserve reduced-motion behavior from the page's GSAP/media-query logic.
+- Pricing overrides include non-uppercase labels, 24px horizontal padding, and Square-emphasis outline CTAs using `--pricing-square`. Preserve those route-local choices when changing pricing; they do not set a homepage-wide gold accent.
 - Header navigation and mobile menu behavior belong to `SiteHeader`; preserve `aria-expanded`, `aria-controls`, accessible labels, and body scroll locking.
 
 ### Generic Button export
@@ -44,9 +49,9 @@ Do not assume `src/components/ui/button.tsx` is the homepage hero button. The cu
 - It is pill-shaped and uses hover scale `1.04` and active scale `0.97`.
 - It currently uses the Tailwind brand-blue focus/emphasis path. Use only where the existing caller already establishes that visual language.
 
-### Card
+### Generic Card export
 
-- The current generic Card is a deliberate exception: 20px radius, white border at `0.06`, mobile padding 20px and desktop padding 30px.
+- The generic Card export has a documented local exception: 20px radius, white border at `0.06`, mobile padding 20px and desktop padding 30px. This does not establish that a current marketing route imports it.
 - Hover raises by 4px and strengthens the border to `0.12`.
 - Do not replace this with the 0/4px token radius without a route-specific design decision.
 
@@ -60,10 +65,10 @@ Do not assume `src/components/ui/button.tsx` is the homepage hero button. The cu
 ## Route baselines
 
 - `/`: editorial homepage; large natural-language hero, media field, Square/Atlas pathway actions, narrative spacing, and sticky navigation.
-- `/pricing`: same shell and CTA language with pricing-specific content.
-- `/deck`: independent fixed-canvas presentation surface; do not apply homepage responsive layout rules to it.
+- `/pricing`: shared shell with pricing-specific tokens, layout, content, and CTA overrides.
+- `/deck`: independent fixed-canvas presentation surface; inspect its own route files and source deck when present. Use the presentation's specified canvas (the existing deck review used 1920×1080), not homepage mobile acceptance rules. If the user requires source-faithful text, preserve the supplied deck copy and links.
 
-Use `assets/baselines/homepage-desktop-1440x1000.png` and `homepage-mobile-390x844.png` for composition comparison. Copy and media can evolve; the current source remains authoritative.
+Use `assets/baselines/homepage-desktop-1440x1000.png` and `homepage-mobile-390x844.png` only for the recorded `/` composition. These images do not cover `/pricing`, `/deck`, or later local edits; see [baselines.md](baselines.md) for provenance and capture scope.
 
 ## Do not drift
 
