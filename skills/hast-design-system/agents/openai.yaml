@@ -1,0 +1,4 @@
+interface:
+  display_name: "Hast Design System"
+  short_description: "Hast UI ownership, marketing tokens, themes and visual QA"
+  default_prompt: "Use $hast-design-system to implement or review this Hast UI change using its actual source owners and relevant design rules."
