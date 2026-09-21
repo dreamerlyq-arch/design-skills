@@ -41,6 +41,7 @@ A small local edit needs its owner and affected checks; it does not trigger a wh
 ## Standalone error pages
 
 - Full-page not-found presentations start with the main error code or title and its explanation. Omit decorative outer cards, glows, icons and repeated error eyebrows; retain recovery actions and their destinations.
+- Center the error code, explanation and recovery actions as one group within the available viewport height. Use balanced padding and allow scrolling on short screens rather than fixed top offsets or clipped content.
 - Recovery actions use content-sized buttons centered in a wrapping row, with readable theme-aware foreground/background pairs. Do not stretch them into equal full-width columns by default.
 - Embedded unavailable states inside a document or resource section have a different role and may retain a subtle container boundary; do not remove every error notice's surface as a consequence of the full-page rule.
 

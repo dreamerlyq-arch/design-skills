@@ -11,6 +11,7 @@ Choose checks from the changed owner and honor current repository requirements. 
 | FAQ | Default first-open state, click, Enter/Space, expand/collapse icon, question's accessible name, focus ring, mobile wrapping, both layout families |
 | Navigation or locale | Actual navigation, selected route, locale destination, mobile menu open/close, focus return and long labels |
 | Booking or other form UI | Required/invalid/pending/success/error states and duplicate submission; preserve API semantics; do not send a real booking merely for visual QA |
+| Copy actions | Verify success feedback and denied/unavailable-clipboard recovery; use keyboard Select All to confirm selection covers only the intended content, including configuration and prompt variants |
 | Product UI | Applicable empty/loading/error/permission states and app-local controls; use the authorized test account/data and report fixture limits |
 | Motion | Existing reduced-motion behavior plus ordinary behavior in affected owner; do not claim site-wide coverage from a single animation |
 
@@ -42,6 +43,8 @@ For responsive work, 390px phone, a relevant tablet breakpoint and a desktop suc
 
 ## Structural edits and data-dependent UI
 
+- When independent requests or nested operations share a screen, test mixed outcomes: the target list succeeds empty while a background request fails; the target load fails and a dialog is opened then canceled; an operation fails inside its active dialog. Match each visible message and empty state to the request that owns it. A single global success/error fixture does not cover these combinations.
+- For a review finding, verify the reported trigger and the adjacent success/recovery path. Existing tests for a data parser or static markup do not prove event-driven state isolation or keyboard selection.
 - Treat populated, loading/skeleton, empty and error presentations as one structural change. Trace separately implemented route fallbacks and component skeletons, share layout definitions where practical, and compare loading-to-content alignment at the affected breakpoints before completing the change.
 
 - Removing a decorative node requires tracing its consumers, not just deleting JSX: inspect positional selectors (`nth-child`, `first-child`), grid tracks, gaps, active/hover states, responsive overrides, animation targets and map indices. Keep indices still used to select icons or calculate animation delays.
