@@ -209,3 +209,21 @@ test("invalid CLI arguments exit 2 with structured errors", async (t) => {
     });
   }
 });
+
+
+test("portable manifest without a personal root uses explicit workspace or repository", (t) => {
+  const f = fixture(t);
+  delete f.manifest.workspaceRoot;
+  f.save();
+  const missing = f.run();
+  assert.equal(missing.code, 2);
+  assert.deepEqual(missing.result.products, {});
+  assert.match(missing.result.errors[0], /Provide --workspace-root/);
+  const workspace = f.run("--workspace-root", f.workspace);
+  assert.equal(workspace.code, 0);
+  assert.deepEqual(Object.keys(workspace.result.products), Object.keys(products));
+  const repo = f.run("--product", "homepage", "--repo-root", f.repo("homepage"));
+  assert.equal(repo.code, 0);
+  assert.equal(repo.result.products.homepage.repository, f.repo("homepage"));
+  assert.equal(repo.result.baselines.length, 1);
+});

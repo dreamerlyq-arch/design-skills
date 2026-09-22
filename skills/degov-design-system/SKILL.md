@@ -9,7 +9,7 @@ Keep the three products coherent through semantic roles and product-local compon
 
 ## Resolve the target
 
-Identify the requested product and route, actual checkout, branch/diff, and the component imported by that route. The repositories below are lookup defaults under `/Users/uncledre/Documents/Devlompment/`; use the user's actual worktree when different. A product name or historical port alone does not establish the target.
+Identify the requested product and route, actual checkout, branch/diff, and the component imported by that route. Resolve the repositories below from the current environment or user-selected worktree; their names are lookup hints, not fixed locations. A product name or historical port alone does not establish the target.
 
 | Product | Repository | Required product reference |
 | --- | --- | --- |
@@ -21,7 +21,7 @@ Read the target product reference, then load additional guidance only as needed:
 
 | Task | Guidance and verification scope |
 | --- | --- |
-| Local spacing, type, copy, or style fix | Inspect the caller and local tokens; verify the affected presentation and states. No default three-product audit or baseline refresh. |
+| Local spacing, type, copy, or style fix | Inspect the caller and local tokens; verify the affected presentation and states. Keep the review within the affected product and states. |
 | New UI, shared component, token, theme, or responsive change | Read [design-contract.md](references/design-contract.md) and relevant rows in [state-matrix.md](references/state-matrix.md). Check affected consumers and rendered variants in the target product. |
 | Visual comparison or whole-product QA | Read [baselines.md](references/baselines.md). Inventory requested routes, themes, states, and viewports; reconcile coverage before claiming completion. |
 | Skill/source refresh or suspected drift | Read [maintenance.md](references/maintenance.md). Check only the affected product unless the task spans products. |
@@ -31,10 +31,10 @@ Read the target product reference, then load additional guidance only as needed:
 Current user instructions and closer repository rules control scope. Within that scope:
 
 - Confirmed product tokens and shared components own reusable visual rules. Inspect the actual import and CSS cascade before choosing an owner.
-- The current route establishes behavior, content, and applicability. Existing code or an uncommitted diff is evidence, not proof of an accepted design. Preserve inherited work; do not silently promote a one-off override or erase a documented exception.
+- The current route establishes behavior, content, and applicability. Existing code or an uncommitted diff is evidence, not proof of an accepted design. Preserve inherited work and documented exceptions; promote a local override only with scoped acceptance.
 - Product references are dated source snapshots. The shared contract supplies semantic defaults where the product has no established pattern. Screenshots supply visual comparison evidence, not component or behavior authority.
 
-When these disagree, inspect source and acceptance context. Clarify only a conflict that materially changes the requested scope or design; do not rewrite source merely to match an old snapshot.
+When these disagree, inspect source and acceptance context. Resolve discrepancies against the current owner and accepted intent; clarify conflicts that materially change the requested outcome.
 
 ## Implement
 
@@ -52,4 +52,4 @@ When these disagree, inspect source and acceptance context. Clarify only a confl
 
 ## Maintain the skill
 
-Use [maintenance.md](references/maintenance.md) for the exact authoring/installation paths, scoped drift commands, and reference or baseline updates. Keep implementation observations separate from accepted design decisions; refresh only the evidence that actually changed.
+Use [maintenance.md](references/maintenance.md) for environment-resolved package locations, scoped drift commands, and reference or baseline updates. Keep implementation observations separate from accepted design decisions; refresh only the evidence that actually changed.

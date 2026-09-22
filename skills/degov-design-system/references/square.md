@@ -1,6 +1,6 @@
 # Square implementation reference
 
-Source snapshot: repository `degov-square`, commit `f124b5390fcb0e93ade2d01a94dc8ca0f8820b5b`, observed 2026-08-27. Inspect current imports and diff before reuse; for suspected drift run `node scripts/check-drift.mjs --product square` from the skill directory.
+Source snapshot: repository `degov-square`, commit `f124b5390fcb0e93ade2d01a94dc8ca0f8820b5b`, observed 2026-08-27. Inspect current imports and diff before reuse; for suspected drift run `node scripts/check-drift.mjs --product square --repo-root /absolute/path/to/checkout` from the skill directory.
 
 This reference maps the Square directory/settings application under `web/`. For a DAO governance site or proposal/draft route, first verify its actual repository and route owner; the name “DeGov” or a link to Square does not establish that these primitives are imported there.
 
@@ -44,8 +44,8 @@ This reference maps the Square directory/settings application under `web/`. For 
 
 - Inputs use a raised neutral surface, 8px radius, semantic line, 3px gold focus ring, disabled state, and `aria-invalid` danger treatment.
 - Select is the Radix implementation in `select.tsx`; preserve keyboard navigation, trigger size, portal placement, selected indicator, disabled items, and scroll buttons.
-- Form primitives wire labels, descriptions, messages, `aria-describedby`, and `aria-invalid`. Do not hand-build error markup that breaks this linkage.
-- Reuse the existing input group/addon/select variant and inspect its caller. `InputAddon` and `InputSelect` contain spaced subcontrols; do not merge them into one outline by default. Use a shared outline only for a caller that already establishes a fused input group, and preserve its responsive split/focus treatment.
+- Form primitives wire labels, descriptions, messages, `aria-describedby`, and `aria-invalid`. Preserve those associations through the shared form primitive.
+- Reuse the existing input group/addon/select variant and inspect its caller. `InputAddon` and `InputSelect` retain their existing spaced subcontrols. Use a shared outline only for a caller that already establishes a fused input group, and preserve its responsive split/focus treatment.
 
 ### Dialog, menu, tooltip
 
@@ -66,14 +66,12 @@ This reference maps the Square directory/settings application under `web/`. For 
 - `/`: public DAO Directory; header, wallet/notification actions, search, self-host action, sortable rows, favorites, and mobile stacked cards.
 - `/setting/[id]/*`: authenticated DAO settings and forms. Preserve route guards, wallet/auth state, validation, and save behavior.
 - `/notification/*`: notification subscription flows. Preserve permission and subscription semantics.
-- `/add/existing` and `/oauth/authorize`: onboarding/authorization surfaces. Do not infer permission changes from visual work.
+- `/add/existing` and `/oauth/authorize`: onboarding/authorization surfaces. Preserve the existing permission and authorization semantics.
 
 Use `assets/baselines/square-desktop-1440x1000.png` and `square-mobile-390x844.png` for the local `/` composition at this observed commit.
 
-## Do not drift
+## Composition checks
 
-- Do not use gold as a structural Card, Panel, table, or row border.
-- Do not replace semantic success/warning/info/danger colors with gold.
-- Do not import Atlas React components; map shared semantics through Square's local primitives.
-- Do not replace wallet, notification, favorite, settings, or authorization behavior while restyling.
-- Do not omit light-theme token behavior when changing a shared Square primitive.
+- Use neutral structural borders and warm-gold action/focus/selection emphasis; semantic status colors keep their own roles.
+- Implement shared semantics through Square-local primitives and verify affected light/dark variants.
+- Preserve wallet, notification, favorite, settings and authorization behavior during presentation changes.

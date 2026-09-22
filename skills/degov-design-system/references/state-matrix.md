@@ -28,6 +28,10 @@ Use applicable rows for new UI or affected behavior. For a narrow visual change,
 
 - Do inspect a caller that already exercises the state before extending a primitive.
 - Do use semantic status color and text/icon labels together when ambiguity is possible.
-- Do report relevant unavailable or unverified states; do not list every inapplicable matrix cell.
+- Report applicable unavailable or unverified states; keep the coverage summary focused on the task.
 - Don't invent a disabled, error, or mobile pattern from another DeGov product.
 - Don't claim state coverage from static source alone when the interaction can be exercised locally.
+
+## Module scope and adoption
+
+For a change review, distinguish new routes, new modules inside existing routes, shared-owner changes and navigation entries. Report unique root causes separately from affected routes; compare the base before attributing an old host-page defect to a new module. Check real imports, custom/native counterparts and local overrides before calling a shared-component migration complete. Scale this inventory to the affected scope, not automatically to the whole product.

@@ -15,12 +15,11 @@ Applies to the authenticated Agent Web console and its API documentation. AIP, G
 - Read-only embedded code, configuration and prompt panels use the secondary pale-blue surface, primary text and a consistent inset radius, without an outer border. A padded header divider may separate actions from content. Terminals, logs and editors retain styling appropriate to their purpose.
 - Adjacent search fields, selectors and outlined actions use the same resting control-border token. Cards use the subtle card-border token. Focus, invalid, selected and disabled states remain meaningful and distinguishable.
 - Dividers on secondary pale-blue content surfaces use `--surface-inset-divider`, owned by `apps/agent-web/src/components/task-agents/api-doc-surfaces.module.css`: `color-mix(in srgb, var(--color-border-secondary) 35%, var(--color-surface-secondary))`. Keep the line 1px thick and inset to the content gutters; use this surface token instead of the white-card border token.
-- Interior separators align with neighboring content gutters at each breakpoint. Structural page, sidebar and table boundaries retain their own alignment.
 - Inspect every card on a page, including below-fold sections and expanded content, for the same surface-role rules.
 
 ## Documentation layout
 
-- API documentation uses a single reading column with headings and deliberate section spacing. Avoid redundant outer cards and isolated decorative icons on peer headings; code and configuration keep their own inset surfaces.
+- API documentation uses a single reading column with headings and deliberate section spacing. Use headings and spacing for peer sections; code and configuration keep their own inset surfaces.
 - Centered unavailable or empty messages sit in a subtle bordered, padded, flat container so their alignment has a visible boundary. Keep the section heading outside that state container.
 - Desktop document navigation occupies a separate sticky right column below the site header. Reserve its width in the layout. Links identify the current reading section and land below the fixed header; account for nested scroll containers, content resizing after expansion and the final section near the page bottom.
 - The directory starts with its links without a redundant visible title; retain an accessible navigation name. Narrow screens place it above the document without covering content. Only include sections present in the document.
@@ -28,32 +27,25 @@ Applies to the authenticated Agent Web console and its API documentation. AIP, G
 ## Actions and forms
 
 - Filled buttons identify primary actions; outlined or ghost variants identify supporting actions. A tinted parent surface uses existing button variants.
-- Theme-aware buttons use paired background and foreground tokens from the same variant, including hover and focus states. Do not combine an adaptive light primary background with a fixed white label or icon.
+- Theme-aware buttons use paired background and foreground tokens from the same variant, including hover and focus states. Verify readable text and icons against each variant’s resolved background.
 - Ordinary Input, Textarea, Select and InputGroup controls share editable-surface and control-border tokens without resting shadows. Keep appearance in their shared owner; page wrappers add layout constraints, not a second field skin. Verify scoped token aliases in computed styles, especially outside dashboard layouts and in dark mode.
 - Textareas honor explicit row counts and remain stable while typing unless the composition intentionally requires content-based sizing, such as a chat prompt.
 - Select triggers keep 12px horizontal padding, including the trailing arrow gutter. Selected items use a stronger background than hover or keyboard highlight; retain a checkmark or equivalent selected-state cue. Compact selectors use an explicit shared variant rather than consumer overrides.
 - Native disabled semantics and accessible names apply to controls and switches. A pointer-events wrapper alone does not disable keyboard interaction. When an in-flight operation requires dismissal to be blocked, cover the close button, Escape, backdrop and controlled open-state callbacks consistently.
 - Copy controls in tinted content panels use a ghost button with an icon and localized label. Provide hover and keyboard-focus feedback, a check icon and announced label on success, and visible failure feedback. Recovery text in every locale must identify the content associated with that action; a shared message may refer to the current section.
 - Copyable configuration and prompt panels retain a keyboard-only fallback when the Clipboard API fails or is unavailable. Use a labeled read-only text control or equivalent section-scoped selection behavior. A focusable `div` alone does not make Select All select only its content.
-- Icon-only controls have equal width and height, no text-button horizontal padding, no flex shrink, and an accessible name. Their size fits the neighboring control group.
 - Form dialogs separate task content, labeled settings and footer actions. Keep a usable input area without excessive blank height; align labels and controls on desktop and stack them on narrow screens. Supporting destination links have lower emphasis than cancel/submit actions. The form body scrolls independently when needed.
-- Schedule settings place timing, model and reasoning controls in one wrapping row beneath the prompt. Use consistent outlined triggers with matching height and radius; omit redundant visible group headings while retaining accessible names. Narrow screens wrap controls without horizontal overflow.
-- Account connection popovers use an icon/title header with a compact status badge at the trailing edge. Descriptions, feedback and optional account details use the full content width below; footer actions sit beneath an inset divider. Avoid reserving an empty icon column through the body. Keep long feedback text wrapping within the content gutters.
-- Connection badges use semantic pale backgrounds with matching text: green for connected, red for expired or unavailable, neutral for loading or ordinary disconnected states. Keep the badge label short; account names and detailed errors remain in the body. A failed action must not relabel a still-connected account as disconnected.
-- Selectors use shared Select primitives and compound time controls use shared Popover primitives, including nested menus. Match neighboring control height, border and radius; avoid mixing native select menus with custom dropdowns in the same form. Native date/time inputs may retain their platform picker for entry semantics.
-- Check popup collision handling, focus return, Escape behavior and nested selection without dismissing the parent dialog. Validate every conditional form branch, including one-time, interval and recurrence settings.
+- For schedule settings or account connection popovers, read the applicable [form composition](form-compositions.md); their exact layout is not a universal form template.
 - Creation and editing forms share fields, spacing and primary/secondary action styles. During submission, controls that could duplicate or conflict with the request are disabled.
-- Errors appear in the active form or confirmation surface. Nested dialogs show the relevant error in the active layer; changing or dismissing an operation clears only its operation-specific feedback, never the underlying list-load error. Keep load and mutation errors separately owned.
+- Errors appear in the active form or confirmation surface. Nested dialogs show the relevant error in the active layer; changing or dismissing an operation clears only its operation-specific feedback, while preserving the underlying list-load error. Keep load and mutation errors separately owned.
 - Destructive actions use semantic error colors consistently across label, icon, hover and focus. Confirmation actions distinguish cancellation from the destructive action and communicate pending work.
 
 ## Loading and feedback
 
 - Structure changes include the loading implementation in the same scope. Skeletons share the populated view's layout owner: surface, gutters, radius, icon size, text hierarchy, metadata/status/action columns and responsive behavior. Verify loading and populated views together at the same viewport; also check empty and error states against the new layout.
-- Each independently loaded resource owns its load result and error state. Its empty presentation depends on that request succeeding with no results; failures or successes in background sibling requests must not suppress a valid empty state or erase its load failure.
+- Each independently loaded resource owns its load result and error state. Its empty presentation depends on that request succeeding with no results; background sibling requests preserve this resource’s own empty/error result.
 - Shared heading skeletons represent the actual title, optional description and meaningful context rows for each caller. Removing a decorative eyebrow from some pages does not remove placeholders needed for plan or status information elsewhere.
-- Skeletons reserve the space of the content they replace. A centered indicator is appropriate for an indeterminate content region; a list skeleton follows the list geometry.
-
-- Page-content loading states sit centrally in the available content area beneath the page header, with a restrained circular indicator and a supporting label below it. The ring has no decorative central block. Inline and button loading stay within their owning control.
+- Choose loading by known structure: lists and established content layouts use corresponding skeletons; indeterminate content regions or whole-region initialization may use a centered circular indicator beneath the page header, with a supporting label and no decorative central block. Inline and button requests stay in their control. Preserve known geometry without fixing unknown result counts or clipping natural content growth.
 - Loading, empty, error and populated states have deliberate layouts and readable labels. Loading motion respects reduced-motion preferences.
 - Error, warning and success notices pair a subtle semantic background with a same-family border and readable foreground. Labels and icons convey meaning alongside color.
 
@@ -61,7 +53,7 @@ Applies to the authenticated Agent Web console and its API documentation. AIP, G
 
 - Resource rows use a subtle secondary-surface background, 16px horizontal and 12px vertical padding, and a shared radius. Titles are 14px semibold; supporting descriptions are 12px with a 20px line height.
 - Keep metadata columns, contextual actions and table-oriented structures where they support comparison. Distinguish title, description and metadata by typography and placement.
-- Skill rows place a single status label in the trailing column, aligned across rows. Pending work uses a spinner within that status area. Avoid an additional checkmark that repeats the same state beside the label.
+- Skill rows place a single status label in the trailing column, aligned across rows. Pending work uses a spinner within that status area. Represent each state once in this status area.
 - Ready/enabled states use a labeled status with a positive indicator. Inactive/paused states use a readable muted treatment and a pause indicator or equivalent non-color cue. Inactive resources remain viewable.
 - Selected, connected, unavailable and failed states preserve their distinct meanings. Missing configuration includes its reason and the appropriate unavailable action state.
 - Long titles and descriptions fit the available width without displacing status labels or actions; preserve full content through the resource detail view or an appropriate accessible disclosure.
@@ -85,7 +77,7 @@ All paths are relative to the target checkout; confirm that they exist before us
 | Shared form and action styles | `apps/agent-web/src/components/ui/dashboard-controls.module.css` |
 | Resource surfaces | `apps/agent-web/src/components/task-agents/resource-list.module.css` |
 | User-message surface | `apps/agent-web/src/components/task-agents/message-surface.module.css` |
-| Short subtitle presentation | `apps/agent-web/src/lib/ui-subtitle.ts` |
+| Authored titles and subtitles | `apps/agent-web/src/i18n/messages/{en,zh-CN,ja}/dashboard.ts` and the owning component for literal copy; shared headings render supplied content unchanged |
 
 ## Verification
 

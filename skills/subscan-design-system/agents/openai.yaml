@@ -1,0 +1,4 @@
+interface:
+  display_name: "Subscan Design System"
+  short_description: "Audit Subscan modules and guide consistent new UI"
+  default_prompt: "Use $subscan-design-system to audit changed Subscan modules or design a new page using verified project patterns."

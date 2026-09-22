@@ -68,8 +68,8 @@ try {
 let manifest;
 try {
   manifest = JSON.parse(readFileSync(resolve(skillRoot, "references/source-manifest.json"), "utf8"));
-  if (!manifest.workspaceRoot || !manifest.products || !Array.isArray(manifest.baselines)) {
-    throw new Error("workspaceRoot, products, and baselines are required");
+  if (!manifest.products || !Array.isArray(manifest.baselines)) {
+    throw new Error("products and baselines are required");
   }
   if (options["--product"] && !manifest.products[options["--product"]]) {
     throw new Error(`manifest has no ${options["--product"]} product`);
@@ -79,7 +79,12 @@ try {
   finish(1);
 }
 
-const workspaceRoot = resolve(options["--workspace-root"] ?? manifest.workspaceRoot);
+const rootArgument = options["--workspace-root"] ?? (options["--repo-root"] ? dirname(resolve(options["--repo-root"])) : manifest.workspaceRoot);
+if (!rootArgument) {
+  result.errors.push("Provide --workspace-root or --product with --repo-root; no workspace is encoded in this package.");
+  finish(2);
+}
+const workspaceRoot = resolve(rootArgument);
 result.workspaceRoot = workspaceRoot;
 const selectedProduct = options["--product"];
 

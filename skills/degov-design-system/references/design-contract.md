@@ -1,6 +1,6 @@
 # DeGov cross-product design contract
 
-Use this reference for shared semantic intent when adding UI or changing shared tokens/components. Exact values and product exceptions belong in the product references and confirmed source owners. A shared default must not overwrite a product's established pattern.
+Use this reference for shared semantic intent when adding UI or changing shared tokens/components. Exact values and product exceptions belong in the product references and confirmed source owners. An established product pattern takes precedence over the shared fallback.
 
 ## Architecture
 
@@ -30,7 +30,8 @@ Use intent-driven names even when the target product maps them to differently na
 - `surface.shell`: navigation and app-shell background.
 - `surface.base`: ordinary Card and Panel background.
 - `surface.raised`: popover, dialog, drawer, and raised-control background.
-- `surface.hover`: hover and lightweight selected feedback.
+- `surface.hover`: transient pointer or keyboard-highlight feedback.
+- `surface.selected`: persistent selection treatment using the product’s existing tokens or variants; map this conceptual role to an existing token or variant when one fits.
 - `text.primary`, `text.muted`, `text.faint`, `text.onAccent`.
 - `border.subtle`, `border.default`.
 - `control.primary`, `control.accent`, `control.height`, `control.heightCompact`.
@@ -56,7 +57,6 @@ Status colors carry status meaning. Product accents do not replace semantic succ
 ### Badge and Tag
 
 - Use neutral pills for metadata and semantic colors for status.
-- Do not use the product accent for every state.
 
 ### Avatar and icon control
 
@@ -71,28 +71,28 @@ Status colors carry status meaning. Product accents do not replace semantic succ
 
 ### Navigation
 
-- Selected state is stable; hover is lighter and distinct from selected.
+- Selected state remains recognizable while hovered or keyboard-highlighted. Hover is lighter and distinct; retain a persistent marker or equivalent non-color cue. Use product-local colors rather than one cross-product value.
 - Keep information architecture and route destinations product-local.
 
 ### Loading, empty, and error states
 
 - Loading preserves likely geometry without delaying the whole page unnecessarily.
 - Empty states explain the absence and the next useful action.
-- Error states name the failure and a recovery path while preserving current query or form context.
+- Error states name the failure and a recovery path while preserving current query or form context. Independently loaded regions own their result and failure; an operation failure updates its own feedback while preserving independent resource results.
+- Preserve zero, unknown, unavailable and empty distinctions. For voting distributions, amounts and thresholds, verify units, precision and the actual child typography; zero totals use an explicit zero or empty visualization. Lists may shorten identities while details retain complete, copyable values.
 
 ## Card and Panel
 
 - Use neutral surfaces, semantic borders, internal padding, and spacing to create hierarchy.
 - A Card is for a standalone collection, detail, or actionable summary.
 - A Panel groups controls and supporting context for one task.
-- Do not wrap every row or content fragment in a Card.
 - Prefer row separators and surface contrast for dense tables and lists.
 - Use the product's panel/card padding tokens and documented exceptions.
-- Nested lists and tables should scroll inside their own container on mobile; the document itself must not overflow horizontally.
+- Nested lists and tables should scroll inside their own container on mobile; keep document width within the viewport.
 
 ## Adoption gate
 
-For a new cross-product visual direction, review one real page in each affected product at the intended desktop/mobile viewports before broad adoption. For an existing shared-component fix, inspect its affected consumers and variants in the requested product; do not expand the task to other products. Keep an unaccepted direction reviewable until a design decision is made.
+For a new cross-product visual direction, review one real page in each affected product at the intended desktop/mobile viewports before broad adoption. For an existing shared-component fix, inspect its affected consumers and variants in the requested product; keep that review in the affected product. Keep an unaccepted direction reviewable until a design decision is made.
 
 ## What this contract cannot decide
 

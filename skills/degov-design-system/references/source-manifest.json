@@ -1,13 +1,16 @@
 {
   "version": 2,
-  "workspaceRoot": "/Users/uncledre/Documents/Devlompment",
   "products": {
     "homepage": {
       "repository": "Degov",
       "observedAt": "2026-08-27",
       "observedCommit": "146f940cccd59de5ebf6c5bd80bfbc190bc1687c",
       "reference": "references/homepage.md",
-      "routes": ["/", "/pricing", "/deck"],
+      "routes": [
+        "/",
+        "/pricing",
+        "/deck"
+      ],
       "invariants": [
         {
           "file": "src/app/site.css",
@@ -21,20 +24,10 @@
         },
         {
           "file": "src/components/layout/site-header.tsx",
-          "includes": ["aria-expanded={isOpen}", "motion-btn"]
-        },
-        {
-          "file": "src/components/ui/button.tsx",
           "includes": [
-            "type ButtonVariant = 'primary' | 'secondary' | 'ghost';",
-            "type ButtonSize = 'lg' | 'default' | 'sm';",
-            "hover:scale-[1.04]",
-            "active:scale-[0.97]"
+            "aria-expanded={isOpen}",
+            "motion-btn"
           ]
-        },
-        {
-          "file": "src/components/ui/card.tsx",
-          "includes": ["rounded-[20px]", "p-5 md:p-[30px]"]
         }
       ]
     },
@@ -43,7 +36,14 @@
       "observedAt": "2026-08-27",
       "observedCommit": "90b14f26d3e94ac8350bf2da93505568af1a8b33",
       "reference": "references/atlas.md",
-      "routes": ["/", "/daos", "/governance", "/daos/[daoId]", "/proposals/[proposalId]", "/participants/[participantId]"],
+      "routes": [
+        "/",
+        "/daos",
+        "/governance",
+        "/daos/[daoId]",
+        "/proposals/[proposalId]",
+        "/participants/[participantId]"
+      ],
       "invariants": [
         {
           "file": "apps/atlas/app/atlas-tokens.css",
@@ -66,15 +66,26 @@
         },
         {
           "file": "apps/atlas/components/atlas-select.tsx",
-          "includes": ["aria-haspopup=\"listbox\"", "aria-selected={option.value === value}", "event.key !== \"Escape\""]
+          "includes": [
+            "aria-haspopup=\"listbox\"",
+            "aria-selected={option.value === value}",
+            "event.key !== \"Escape\""
+          ]
         },
         {
           "file": "apps/atlas/components/atlas-tooltip.tsx",
-          "includes": ["createPortal", "role=\"tooltip\"", "onFocus={showAtFocus}"]
+          "includes": [
+            "createPortal",
+            "role=\"tooltip\"",
+            "onFocus={showAtFocus}"
+          ]
         },
         {
           "file": "apps/atlas/components/event-detail-panel.tsx",
-          "includes": ["restorePanelFocus", "type PanelMode = \"detail\" | \"proposal-list\""]
+          "includes": [
+            "restorePanelFocus",
+            "type PanelMode = \"detail\" | \"proposal-list\""
+          ]
         }
       ]
     },
@@ -83,7 +94,13 @@
       "observedAt": "2026-08-27",
       "observedCommit": "f124b5390fcb0e93ade2d01a94dc8ca0f8820b5b",
       "reference": "references/square.md",
-      "routes": ["/", "/setting/[id]", "/notification", "/add/existing", "/oauth/authorize"],
+      "routes": [
+        "/",
+        "/setting/[id]",
+        "/notification",
+        "/add/existing",
+        "/oauth/authorize"
+      ],
       "invariants": [
         {
           "file": "web/src/app/square-tokens.css",
@@ -98,23 +115,46 @@
         },
         {
           "file": "web/src/components/ui/button.tsx",
-          "includes": ["destructive:", "outline:", "secondary:", "ghost:", "link:", "sm: 'h-[34px]", "focus-visible:ring-[var(--square-color-focus)]"]
+          "includes": [
+            "destructive:",
+            "outline:",
+            "secondary:",
+            "ghost:",
+            "link:",
+            "sm: 'h-[34px]",
+            "focus-visible:ring-[var(--square-color-focus)]"
+          ]
         },
         {
           "file": "web/src/components/ui/input.tsx",
-          "includes": ["bg-[var(--square-color-surface-raised)]", "aria-invalid:border-destructive", "disabled:opacity-50"]
+          "includes": [
+            "bg-[var(--square-color-surface-raised)]",
+            "aria-invalid:border-destructive",
+            "disabled:opacity-50"
+          ]
         },
         {
           "file": "web/src/components/ui/dialog.tsx",
-          "includes": ["bg-black/66", "p-6", "shadow-[var(--square-panel-shadow)]"]
+          "includes": [
+            "bg-black/66",
+            "p-6",
+            "shadow-[var(--square-panel-shadow)]"
+          ]
         },
         {
           "file": "web/src/components/ui/table.tsx",
-          "includes": ["overflow-x-auto", "data-[state=selected]:bg-muted"]
+          "includes": [
+            "overflow-x-auto",
+            "data-[state=selected]:bg-muted"
+          ]
         },
         {
           "file": "web/src/components/ui/image-with-fallback.tsx",
-          "includes": ["showFallback", "role=\"img\"", "onError={() => setHasFailed(true)}"]
+          "includes": [
+            "showFallback",
+            "role=\"img\"",
+            "onError={() => setHasFailed(true)}"
+          ]
         }
       ]
     }
@@ -132,7 +172,10 @@
       "accountDataState": null,
       "width": 1440,
       "height": 1000,
-      "sha256": "3836cb83e54c1162e9c8e30527faac005b6ca0e8e68fe85732d1785f1ca5c874"
+      "sha256": "3836cb83e54c1162e9c8e30527faac005b6ca0e8e68fe85732d1785f1ca5c874",
+      "evidenceStatus": "historical-reference",
+      "acceptanceStatus": "not-recorded",
+      "acceptanceReference": null
     },
     {
       "file": "assets/baselines/homepage-mobile-390x844.png",
@@ -146,7 +189,10 @@
       "accountDataState": null,
       "width": 390,
       "height": 844,
-      "sha256": "802978c2ed29288909f670cd426b16a011051c3945156c16b032d789a5885f18"
+      "sha256": "802978c2ed29288909f670cd426b16a011051c3945156c16b032d789a5885f18",
+      "evidenceStatus": "historical-reference",
+      "acceptanceStatus": "not-recorded",
+      "acceptanceReference": null
     },
     {
       "file": "assets/baselines/atlas-desktop-1440x1000.png",
@@ -160,7 +206,10 @@
       "accountDataState": null,
       "width": 1440,
       "height": 1000,
-      "sha256": "dc53d02a3f7e235af69fbefb190c885a69c5e896d4be92905cbddf29e81300ae"
+      "sha256": "dc53d02a3f7e235af69fbefb190c885a69c5e896d4be92905cbddf29e81300ae",
+      "evidenceStatus": "historical-reference",
+      "acceptanceStatus": "not-recorded",
+      "acceptanceReference": null
     },
     {
       "file": "assets/baselines/atlas-mobile-390x844.png",
@@ -174,7 +223,10 @@
       "accountDataState": null,
       "width": 390,
       "height": 844,
-      "sha256": "fca23dd5e1a829033cfbed7ae5a0d0c1b42dc75f71cf74f3750f657b66cc5853"
+      "sha256": "fca23dd5e1a829033cfbed7ae5a0d0c1b42dc75f71cf74f3750f657b66cc5853",
+      "evidenceStatus": "historical-reference",
+      "acceptanceStatus": "not-recorded",
+      "acceptanceReference": null
     },
     {
       "file": "assets/baselines/square-desktop-1440x1000.png",
@@ -188,7 +240,10 @@
       "accountDataState": null,
       "width": 1440,
       "height": 1000,
-      "sha256": "da472972c0032d434e076b7bd127ef456d652936eb1cc826782a33f456c5752b"
+      "sha256": "da472972c0032d434e076b7bd127ef456d652936eb1cc826782a33f456c5752b",
+      "evidenceStatus": "historical-reference",
+      "acceptanceStatus": "not-recorded",
+      "acceptanceReference": null
     },
     {
       "file": "assets/baselines/square-mobile-390x844.png",
@@ -202,7 +257,10 @@
       "accountDataState": null,
       "width": 390,
       "height": 844,
-      "sha256": "1120b2a72e100b0380dc884edc4b97b8c3ff9d875af138f16a96e14cc11ad68a"
+      "sha256": "1120b2a72e100b0380dc884edc4b97b8c3ff9d875af138f16a96e14cc11ad68a",
+      "evidenceStatus": "historical-reference",
+      "acceptanceStatus": "not-recorded",
+      "acceptanceReference": null
     }
   ]
 }

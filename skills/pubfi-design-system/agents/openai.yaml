@@ -1,0 +1,8 @@
+interface:
+  display_name: "PubFi Design System"
+  short_description: "Apply PubFi product and visual contracts"
+  brand_color: "#05D6C7"
+  default_prompt: "Use $pubfi-design-system to implement or review this PubFi change against the current product and authority contracts."
+
+policy:
+  allow_implicit_invocation: true

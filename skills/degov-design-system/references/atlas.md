@@ -1,6 +1,6 @@
 # Atlas implementation reference
 
-Source snapshot: repository `degov-agent-api`, commit `90b14f26d3e94ac8350bf2da93505568af1a8b33`, observed 2026-08-27. Inspect current imports and diff before reuse; for suspected drift run `node scripts/check-drift.mjs --product atlas` from the skill directory. The stored `/daos` images came from production; its deployed commit was not recorded, so these images are not proof of this local commit's rendering.
+Source snapshot: repository `degov-agent-api`, commit `90b14f26d3e94ac8350bf2da93505568af1a8b33`, observed 2026-08-27. Inspect current imports and diff before reuse; for suspected drift run `node scripts/check-drift.mjs --product atlas --repo-root /absolute/path/to/checkout` from the skill directory. The stored `/daos` images came from production; its deployed commit was not recorded, so these images are not proof of this local commit's rendering.
 
 ## Canonical source map
 
@@ -52,7 +52,7 @@ Source snapshot: repository `degov-agent-api`, commit `90b14f26d3e94ac8350bf2da9
 ### Tooltip and status
 
 - `AtlasTooltip` is cursor-anchored, portal-rendered, focus-accessible, and intentionally replaces native `title` bubbles.
-- `StatePill` accepts backend coverage/status values and converts them to stable `state-*` classes. Do not color raw strings ad hoc.
+- `StatePill` accepts backend coverage/status values and converts them to stable `state-*` classes. Use that mapping consistently across consumers.
 
 ### Navigation and event panel
 
@@ -68,16 +68,14 @@ Source snapshot: repository `degov-agent-api`, commit `90b14f26d3e94ac8350bf2da9
 
 Use `assets/baselines/atlas-desktop-1440x1000.png` and `atlas-mobile-390x844.png` for the `/daos` composition. The images were captured from `https://atlas.degov.ai/daos` because the local route could not render without its required backend environment.
 
-## Do not drift
+## Composition checks
 
-- Do not introduce Square gold into Atlas primary, selected, or focus states.
-- Do not add colored Card, Panel, table, or row borders.
-- Do not replace data-dense rows with isolated marketing cards.
-- Do not bypass canonical search, select, tooltip, StatePill, loading, empty, error, or event-panel implementations.
-- Do not call a local Atlas screenshot verified if the route is showing the missing-API error boundary.
+- Use Atlas neutral surfaces, white action/selection/focus emphasis and neutral structural borders.
+- Keep dense data in aligned rows and use the canonical search, select, tooltip, StatePill, async-state and event-panel owners.
+- Record the rendered data state accurately: a missing-API boundary verifies that error presentation, while a populated route is needed for data-layout acceptance.
 
 ## Runtime and navigation evidence
 
-- Check `docs/atlas.md` and the current backend adapter when data cannot render. The inspected source requires `ATLAS_API_BASE_URL` and server-side authentication; an old `ATLAS_USE_MOCK_DATA` recipe or leftover local fixture does not prove the current runtime supports mocks. Do not add mock wiring or change auth to obtain a screenshot.
+- Check `docs/atlas.md` and the current backend adapter when data cannot render. The inspected source requires `ATLAS_API_BASE_URL` and server-side authentication; an old `ATLAS_USE_MOCK_DATA` recipe or leftover local fixture does not prove the current runtime supports mocks. Use the supported data/auth setup or report the runtime check as unavailable; fixture evidence remains explicitly separate.
 - If an explicitly authorized fixture path exists in the actual checkout, identify it as fixture-based visual evidence. It cannot verify live backend integration.
 - For route/motion changes inspect `apps/atlas/app/atlas-route-motion.tsx` and its actual callers. Verify content visibility after client navigation and re-entry as well as hard refresh; a layout-level animation may run before streamed route content mounts.

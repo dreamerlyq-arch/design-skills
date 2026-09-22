@@ -9,13 +9,14 @@ Keep Hast interfaces consistent through their actual shared owners while preserv
 
 ## Select the scope
 
-Locate the target Hast checkout from the current workspace or the user-provided repository. Resolve the branch/diff, route and imported component before editing. Repository paths in this skill are relative to that checkout; skill reference links are relative to this package. Do not infer the target from a remembered directory or preview port.
+Locate the target Hast checkout from the current workspace or the user-provided repository. Resolve the branch/diff, route and imported component before editing. Repository paths in this skill are relative to that checkout; skill reference links are relative to this package. Confirm the preview serves the selected checkout.
 
 | Task | Read |
 | --- | --- |
 | Any Hast UI task; distinguish marketing from product UI | [Source ownership](references/ownership.md) |
 | Site marketing, shared visual tokens, buttons, Hero, cards, themes | [Marketing contract](references/marketing.md) |
 | Docs, customer stories, legal, public status | Relevant Site row in [source ownership](references/ownership.md); use marketing guidance only for genuinely shared chrome/components |
+| Standalone not-found and embedded unavailable presentations | [Error presentations](references/error-presentations.md) |
 | Agent Web console, resource lists, forms, conversation workspace and API docs | [Agent Web contract](references/agent-web.md) |
 | Shared style change, responsive behavior, interaction or visual QA | Relevant rows of [verification](references/verification.md) |
 | Skill changes, stale pointers, adoption of an accepted design rule | [Maintenance](references/maintenance.md) |
@@ -32,18 +33,11 @@ A small local edit needs its owner and affected checks; it does not trigger a wh
 
 ## Product heading and container rules
 
-- Do not add decorative eyebrows, overlines or kickers that repeat the page title or navigation context. Start with the title. Preserve meaningful account, status or scope information in an appropriate inline badge or metadata position rather than an ornamental line above the title.
-- Short page, card and dialog subtitles have no trailing sentence period (`.` or `。`). Preserve internal punctuation, abbreviations, ellipses and punctuation in body paragraphs, instructions, code and stored user content. Apply this at the presentation boundary for dynamic subtitles.
-- An icon-bearing dialog heading uses an icon on the left and a title/subtitle stack on the right. Do not put an icon, title and subtitle on three separate rows. Use a coherent app icon family and a flat icon container without a drop shadow; keep long headings able to wrap on narrow screens.
-- Icon-only buttons have equal width and height, no text-button horizontal padding, and do not shrink in flex layouts. Match neighboring control height and retain an accessible name and visible focus.
-- Interior card and dialog dividers are inset to the same horizontal gutters as adjacent content, including responsive gutters. Do not use edge-to-edge header/footer lines inside padded containers. Structural page/sidebar boundaries and table grid lines are distinct roles.
-
-## Standalone error pages
-
-- Full-page not-found presentations start with the main error code or title and its explanation. Omit decorative outer cards, glows, icons and repeated error eyebrows; retain recovery actions and their destinations.
-- Center the error code, explanation and recovery actions as one group within the available viewport height. Use balanced padding and allow scrolling on short screens rather than fixed top offsets or clipped content.
-- Recovery actions use content-sized buttons centered in a wrapping row, with readable theme-aware foreground/background pairs. Do not stretch them into equal full-width columns by default.
-- Embedded unavailable states inside a document or resource section have a different role and may retain a subtle container boundary; do not remove every error notice's surface as a consequence of the full-page rule.
+- Start page and section hierarchy with the title. Place meaningful account, status or scope information in an inline badge or metadata position; use overlines only when they add distinct information.
+- Write short page, card and dialog titles/subtitles as phrases ending without a sentence period (`.` or `。`). Apply edits directly to authored copy and supported locale files. Shared components render supplied content unchanged, including dynamic/user content. Preserve internal punctuation, abbreviations, ellipses, body paragraphs, instructions and code.
+- An icon-bearing dialog heading uses an icon on the left and a title/subtitle stack on the right. Use a coherent app icon family and a flat icon container without a drop shadow; keep long headings able to wrap on narrow screens.
+- Icon-only buttons use a square, non-shrinking hit area with icon-appropriate padding. Match neighboring control height and retain an accessible name and visible focus.
+- Interior card and dialog dividers are inset to the same horizontal gutters as adjacent content, including responsive gutters. Structural page/sidebar boundaries and table grid lines are distinct roles.
 
 ## Deliver and maintain
 
@@ -51,4 +45,4 @@ Use [verification](references/verification.md) for coverage proportional to the 
 
 Follow the applicable repository and local instructions for delivery. This skill defines design and verification guidance; it does not define a publication workflow.
 
-Follow [maintenance](references/maintenance.md) when updating this package. Resolve any authoring/install mapping from the current environment; it is not part of the design contract. Do not promote unaccepted experiments into permanent rules.
+Follow [maintenance](references/maintenance.md) when updating this package. Resolve any authoring/install mapping from the current environment; it is not part of the design contract. Keep experiments marked as candidates until accepted.

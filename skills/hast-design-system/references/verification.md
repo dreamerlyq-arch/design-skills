@@ -4,7 +4,7 @@ Choose checks from the changed owner and honor current repository requirements. 
 
 | Changed area | Meaningful checks |
 | --- | --- |
-| Token, global CSS or import | Direct-load affected route families and navigate between them; inspect computed values, theme and breakpoint overrides; do not rely only on a warmed-up client session |
+| Token, global CSS or import | Direct-load affected route families and navigate between them; inspect computed values, theme and breakpoint overrides; include a fresh direct load |
 | CTA or inline action | Native semantics/destination, hover, keyboard focus on light/dark/inverse surfaces, wrapping, disabled/loading behavior where applicable |
 | Hero/type/spacing | Accepted reference or comparable page at the same viewport; outer copy spacing versus inner/demo spacing; natural en/zh-CN/ja wrapping when affected; anchor/header overlap |
 | Cards | Comparable family inventory; nested boundaries, border/radius/shadow in both themes; preserve demo and editorial exceptions |
@@ -13,7 +13,7 @@ Choose checks from the changed owner and honor current repository requirements. 
 | Booking or other form UI | Required/invalid/pending/success/error states and duplicate submission; preserve API semantics; do not send a real booking merely for visual QA |
 | Copy actions | Verify success feedback and denied/unavailable-clipboard recovery; use keyboard Select All to confirm selection covers only the intended content, including configuration and prompt variants |
 | Product UI | Applicable empty/loading/error/permission states and app-local controls; use the authorized test account/data and report fixture limits |
-| Motion | Existing reduced-motion behavior plus ordinary behavior in affected owner; do not claim site-wide coverage from a single animation |
+| Motion | Existing reduced-motion behavior plus ordinary behavior in affected owner; report the affected motion owners checked |
 
 ## Scope reconciliation
 
@@ -25,7 +25,7 @@ For responsive work, 390px phone, a relevant tablet breakpoint and a desktop suc
 
 ## Component adoption and interaction coverage
 
-- A shared-component fix and a consumer migration are separate coverage claims. Inventory shared imports, native elements, hand-built menus/popovers and local style overrides across the affected page family, including conditional and expanded branches. Do not infer adoption from similar appearance or a component name.
+- A shared-component fix and a consumer migration are separate coverage claims. Inventory shared imports, native elements, hand-built menus/popovers and local style overrides across the affected page family, including conditional and expanded branches. Establish adoption from the actual imports and rendered behavior.
 - Diagnose the failing layer before changing a shared owner: compare a working consumer with the failing one, inspect its rendered styles and props, and determine whether the cause is the primitive, missing adoption or a local override. Preserve working shared geometry when only one consumer is wrong.
 - Migrations preserve field values, events, validation, pending behavior, model/source identifiers and meaningful metadata. Retain native or specialized controls where their semantics warrant it, such as file, color and date/time pickers; account for these exceptions explicitly.
 - For page-family audits, exercise a complete representative flow: navigation, list, detail, action and feedback. Include keyboard focus, nested popup dismissal, collision/scroll boundaries, long content, narrow layouts and relevant loading, empty, failure and pending states. Static primitive searches alone do not establish interaction coverage.
@@ -33,11 +33,11 @@ For responsive work, 390px phone, a relevant tablet breakpoint and a desktop suc
 
 ## Local checks and evidence
 
-- Read current AGENTS.md and package scripts. Use the runtime and package-manager versions required by the target checkout; do not assume the shell default.
+- Read current AGENTS.md and package scripts. Use the runtime and package-manager versions required by the target checkout; select those versions explicitly.
 - Site commands: `pnpm --filter @hast/site lint`, `pnpm --filter @hast/site test`; build with `pnpm --filter @hast/site build` when required by repository rules or shared import/build risk.
 - For product apps, select their own workspace and checks. Site tests cannot establish Agent Web or GTM application behavior.
 - Use a browser and inspection tools allowed by the current environment. Confirm that the preview serves the target checkout before testing; a reachable URL alone does not establish the revision. Record the route, viewport, theme and relevant state. If rendering is unavailable, report code-only verification explicitly.
-- Do not run a build against a concurrently running dev server's output directory. Stop only task-owned services, preserve inherited ones, and stop services started by the task before final handoff as required by repository rules.
+- Give a build its own output directory when a dev server is running. Stop only task-owned services, preserve inherited ones, and stop services started by the task before final handoff as required by repository rules.
 - Store temporary screenshots and reports in the environment's designated artifact or temporary directory. Include enough route, viewport, theme and revision context to interpret them. Task screenshots become design baselines only through explicit acceptance.
 - Report local checks, browser observations, deployment and user acceptance distinctly. A 200 response, screenshot, lint or build alone does not prove usability.
 
@@ -52,3 +52,11 @@ For responsive work, 390px phone, a relevant tablet breakpoint and a desktop suc
 - Keep surviving desktop layouts intact: removing a number column from a three-column list should leave the intended title/body columns, not automatically collapse the entire row.
 - CSS parsing and lint prove syntax only. Match verification to the failure: styles need selector/cascade and rendered-state checks; TypeScript checks catch deleted indices still referenced in JSX.
 - For pricing and other data-dependent UI, distinguish loading, a legitimate empty result, and a request/configuration failure. Verify readable recovery states and environment-derived action destinations without changing API or cache behavior as a visual fix. Route underlying data failures to their implementation owner and tests; mock results do not establish live-service availability.
+
+## Comparing alternatives
+
+When choosing a visual alternative, compare actual consumers with equivalent data, viewport, theme and state. Change the real owner/token, inspect the rendered consumer, then verify again without temporary overrides after selection. Controls for comparison are optional task tools, not production features or mandatory setup.
+
+## Module scope and adoption
+
+For a change review, distinguish new routes, new modules inside existing routes, shared-owner changes and navigation entries. Report unique root causes separately from affected routes; compare the base before attributing an old host-page defect to a new module. Check real imports, custom/native counterparts and local overrides before calling a shared-component migration complete. Scale this inventory to the affected scope, not automatically to the whole product.

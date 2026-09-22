@@ -7,10 +7,10 @@ Paths below are relative to the actual `hast-mono` checkout. Resolve the importe
 | Surface | Start here | Boundary |
 | --- | --- | --- |
 | Public marketing, docs, legal, customer stories, status | `apps/site/src/app/[locale]/(marketing)/` | Public task semantics; `(marketing)` route-group membership does not make a status table or document a campaign Hero |
-| Authenticated workspace, Task Agent, account, billing | `apps/agent-web/src/app/`, `apps/agent-web/src/components/ui/`, `apps/agent-web/src/app/globals.css` | Agent Web local primitives; never import Site CTA geometry as the product control system |
+| Authenticated workspace, Task Agent, account, billing | `apps/agent-web/src/app/`, `apps/agent-web/src/components/ui/`, `apps/agent-web/src/app/globals.css` | Agent Web local primitives, control geometry and themes |
 | GTM marketing | `apps/site/src/app/[locale]/(marketing)/gtm/page.tsx`, `apps/site/src/app/(marketing)/gtm/` | Public landing page |
 | GTM application | `apps/gtm-web/src/app/`, `apps/gtm-web/src/components/`, `apps/gtm-web/src/app/globals.css`, `apps/gtm-web/src/app/tailwind.css` | Operational project UI; inspect its own state and theme ownership |
-| AIP FDE workbench | `apps/aip-web/src/app/`, `apps/aip-web/src/components/app-shell.tsx`, `apps/aip-web/src/app/globals.css` | Profile-scoped management UI; do not copy public FDE layouts |
+| AIP FDE workbench | `apps/aip-web/src/app/`, `apps/aip-web/src/components/app-shell.tsx`, `apps/aip-web/src/app/globals.css` | Profile-scoped management UI with its own layout |
 
 Backend authority stays with the repository owner: Platform API for shared product data/permissions, Backplane for runtime orchestration, matching FDE modules for integration-specific behavior. If a UI issue crosses these boundaries, read applicable AGENTS.md and source contracts; this skill is not backend architecture authority.
 
@@ -39,7 +39,7 @@ Backend authority stays with the repository owner: Platform API for shared produ
 
 ## Public non-campaign surfaces
 
-- **Docs:** locale routes `docs/page.tsx`, `docs/[slug]/page.tsx`; published content under `apps/site/content/docs/{en,ja,zh-CN}`. Preserve document hierarchy, code blocks, anchors, sidebar and reading width. Shared inline link styling has a `ds.component.link.inline` owner. Do not apply Hero H1 rules to article headings.
+- **Docs:** locale routes `docs/page.tsx`, `docs/[slug]/page.tsx`; published content under `apps/site/content/docs/{en,ja,zh-CN}`. Preserve document hierarchy, code blocks, anchors, sidebar and reading width. Shared inline link styling has a `ds.component.link.inline` owner. Use document-specific heading roles and reading measure.
 - **Customer stories:** locale routes `solutions/customer-stories/page.tsx` and `[slug]/page.tsx`. Preserve list/detail reading hierarchy, dates, imagery and content. A black page in light mode is not explained by a dark illustration alone; check actual page colors and theme selectors.
 - **Legal:** locale `privacy/page.tsx` and `terms/page.tsx`; retain readable prose and heading hierarchy.
 - **Status:** locale `status/` routes and `apps/site/src/app/(marketing)/status/status.module.css`. Keep status meaning, run evidence, unknown/error/loading states and data layout. Marketing chrome does not justify promotional treatment of operational data.
