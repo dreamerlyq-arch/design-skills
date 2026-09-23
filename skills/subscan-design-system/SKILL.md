@@ -5,7 +5,7 @@ description: Apply Subscan UI source mappings and evidence-based module patterns
 
 # Subscan Design System
 
-Status: local reviewable draft, established 2026-09-22. The source mappings are verified; proposed visual baselines have not received final design approval. Treat site-wide visual approval as open until the relevant scope is accepted.
+Status: local reviewable draft, maintained 2026-09-23. The source mappings are verified; proposed visual baselines have not received final design approval. Treat site-wide visual approval as open until the relevant scope is accepted.
 
 ## Start from the correct surface
 
@@ -29,9 +29,11 @@ For each finding report impact, owner, reproducible condition, evidence level, p
 
 ## Design new UI
 
-Start with the closest suitable module pattern and its actual shared components. Explain the chosen layout, information hierarchy and state behavior before inventing a new pattern. Preserve product meaning, units, precision, links and conditional chain behavior.
+Start with the closest suitable module pattern and its actual shared components. Explain the chosen layout, information hierarchy and state behavior before inventing a new pattern. Preserve product meaning, units, precision, links and conditional chain behavior. Structure lists around the user's comparison task: place identity and decision-driving fields such as rank near the beginning, and give each independent property its own clear label and column. Keep related columns adjacent; combine values when their relationship and shared unit are immediately clear. Present a single prominent filter criterion inline with the results, and use a dialog when criteria form a multi-field group. Use shared buttons for prominent actions and inline links for lower-emphasis destinations according to their role in the page hierarchy.
 
-Verify final composed UI: Text can be inline, Balance can set its own font size, and a domain StatusTag is not automatically a global status system. Reuse alone does not guarantee consistent hierarchy or behavior.
+Verify final composed UI: Text can be inline, Balance can set its own font size, and a domain StatusTag is not automatically a global status system. Reuse alone does not guarantee consistent hierarchy or behavior. Align typography for content with the same table role, including links, status tags, and values; check rendered child styles and units together. Keep a shared control's trigger, menu options, selected state, and open-menu typography on the same design-system scale.
+
+For responsive headers and overlays, preserve the intrinsic size of logos and icons while allowing labels to flex. Check menus against viewport edges and adapt dialog width and field columns to available space and filter count.
 
 Keep loading, empty, error and populated states distinct. Ensure real links look interactive, form controls have names and feedback, and shareable navigation restores state. Preserve content when rearranging narrow layouts.
 
