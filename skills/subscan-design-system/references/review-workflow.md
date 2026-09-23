@@ -18,6 +18,8 @@ For a new page, identify surface, chain availability, main user task, data contr
 6. For responsive findings, measure document and local container overflow separately. For type hierarchy, inspect computed styles of final values and units.
 7. Confirm direct URL and refresh when claiming state restoration. Check actual invalid/valid outcomes when claiming form feedback works.
 
+When one control or visual pattern is reported, trace its shared owner and inspect the other consumers and variants that use it. Record the shared root cause separately from each affected page/module, then verify representative consumers at their relevant breakpoints. For selects and overlays, inspect both closed and open states, computed trigger/menu typography, focus/selection feedback, and placement against viewport edges.
+
 ## Finding format
 
 `Priority · Route / chain / module / state → impact → owner → evidence → proposed correction → verification / missing coverage`

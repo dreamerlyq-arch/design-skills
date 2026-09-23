@@ -1,6 +1,6 @@
 # Source map
 
-All paths below are relative to the subscan-ui-next checkout. Verified against PR #2259 head `53f18bb2a3ac6ef693a566226564a6478d105b13` on 2026-09-22. Re-resolve moved owners on later revisions.
+All paths below are relative to the subscan-ui-next checkout. Verified against PR #2259 head `700532ecb38e8e2b222060c9cbfda9f55e4a1df8` on 2026-09-23. Re-resolve moved owners on later revisions.
 
 ## Surface and composition owners
 
@@ -14,6 +14,8 @@ All paths below are relative to the subscan-ui-next checkout. Verified against P
 | Text | `src/ui/Text/Text.tsx` | Default 14px and inline; small 12px; use explicit block/stack where separation is intended |
 | Amount and entity | `src/components/Balance/Balance.tsx`, `src/components/Identicon/Identicon.tsx` | Inspect actual props, decimals, unit handling, truncation and copy/link behavior |
 | Lists and fields | `src/ui/Table`, `src/ui/Table/TableCol.tsx` | Distinguish wide data table from label/value detail layout |
+| Selects and menus | `src/ui/Select/Select.tsx`, `src/ui/Menu/Menu.tsx` | Inspect trigger and option typography, selected/hover states, anchoring and viewport collision behavior |
+| Popovers and dialogs | `src/ui/Popover`, `src/components/DialogLayout/FilterDialog.tsx` | Reuse shared surface tokens; size and place overlays for their content and available viewport |
 | Tabs | `src/ui/index.ts`, `src/ui/Tabs/client/Tab.tsx`, `src/ui/Tabs/index.ts` | Public client exports and server exports differ; resolve the actual public export before reuse |
 | Pagination | `src/ui/Pagination/Pagination.tsx` | Match API capabilities, total and URL behavior before replacing a custom pager |
 | Controls | `src/ui/Button/Button.tsx`, `src/ui/Input/Input.tsx`, `src/components/DialogLayout/FilterDialog.tsx` | Check composed labeling, states and focus rather than only appearance |

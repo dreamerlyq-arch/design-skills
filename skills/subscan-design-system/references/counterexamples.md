@@ -7,6 +7,10 @@ Use for diagnosis or when copying an existing analogue. These mechanisms were so
 | Base-unit amount appears as a huge human value | Check the API amount contract and token decimals; use Balance without converting twice |
 | Stacked labels concatenate | Text defaults to inline; explicitly choose a stack or field row |
 | Same-level values have different sizes | Inspect the visible child and unit, not only parent classes |
+| A single status criterion takes a multi-step dialog to change | Show a labeled Select beside the results; reserve a grouped dialog for multiple criteria |
+| Rank sits far from the entity it qualifies, or independent properties share one column | Order decision-driving identity/rank fields early and give each independent property a named column |
+| A select matches the design while closed but its options use another type scale | Compare computed styles for the trigger, menu options, selected item and focus state in the open control |
+| A header logo or menu is squeezed, or an anchored menu crosses the viewport edge | Preserve intrinsic logo/icon size, let labels flex, and verify overlay placement at the affected width |
 | Long identities crowd principal columns | Use established list truncation and detail copy/full-value behavior; measure both local and document overflow |
 | Registered/filter labels disagree across views | Reconcile domain status mapping, active filters, headings and counts |
 | Tab/pager resets on refresh | Use stable shareable state where the task calls for it; verify direct URL and back navigation |

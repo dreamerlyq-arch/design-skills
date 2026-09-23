@@ -18,13 +18,17 @@ Lists should keep main columns visible using established short entity display wi
 
 ## 3. Tables and responsive layout
 
-Reuse Table for tabular comparisons and TableCol for label/value details when their actual behavior fits. Local horizontal scrolling of a genuinely wide table can be appropriate; entire-document overflow is a different issue. Record both document width and table/container width before diagnosing. Test long addresses, numeric extremes, extra status text and narrow layouts.
+Reuse Table for tabular comparisons and TableCol for label/value details when their actual behavior fits. Order columns by the user's scan and decision sequence, with identity and ranking close to the leading edge. Give independent dimensions distinct labels and columns, and keep related fields adjacent so their relationship stays easy to read. A combined cell works when its shared unit or relationship adds meaning at a glance. Match same-role body text across a row, including links, numeric values and status tags, while preserving meaningful hierarchy for labels and supporting units.
+
+Local horizontal scrolling of a genuinely wide table can be appropriate; entire-document overflow is a different issue. Record both document width and table/container width before diagnosing. Test long addresses, numeric extremes, extra status text and narrow layouts. At narrow widths, preserve logo/icon dimensions, let text labels adapt, and keep menus within viewport bounds through suitable anchoring and collision handling.
 
 ## 4. Tabs, filters and pagination
 
 For shareable page content, use stable tab values and the existing routable pattern; verify direct URL, refresh and back navigation. Preserve other relevant query parameters. Ephemeral local controls may retain local state.
 
 Keep filter labels, heading and result counts consistent with active selection. Reuse Pagination where the backend supplies its needed capabilities; preserve truthful totals and the supported page-size behavior. Keep known loading and pagination structure stable during requests while allowing real result counts and text to grow naturally. Selected options/tabs remain distinguishable from transient hover or keyboard highlight with a persistent visual cue.
+
+Expose a single high-value filter beside the data as a labeled Select so its current state stays visible and directly adjustable. Use FilterDialog for several related criteria that benefit from a grouped apply action. Keep the shared Select trigger, option list and selected item on a consistent typography and state scale; inspect the actual open menu as well as the closed control.
 
 ## 5. Forms and asynchronous states
 
@@ -41,3 +45,5 @@ Use semantic surface, border, text and chain tokens from current source. Chain i
 Define a consistent domain status mapping across list, detail and account modules. A StatusTag borrowed from AssetConversion is a component reuse decision, not a global semantic authority. Retain text labels so status is not color-only.
 
 Use link styling for actual destinations or established interactive semantics. Use ordinary text styling for values that have no supported destination. Keep display labels localized through existing authored locale ownership; format enum labels without altering API values or user content.
+
+Choose shared Button variants for prominent module/header actions, and inline link treatment for secondary navigation such as contextual "view all" destinations. Keep menu and dialog surfaces aligned to the shared radius, border, shadow, spacing and typography tokens, then verify their selected, focus and viewport-edge states in the composed page.
